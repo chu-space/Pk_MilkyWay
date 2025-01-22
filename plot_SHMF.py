@@ -1,6 +1,9 @@
 from helpers.SimulationAnalysis import readHlist
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+from pandas import DataFrame
+import beyond_CDM_SHMF
 
 BASE_PATH_HALO4 = '/central/groups/carnegie_poc/enadler/ncdm_resims/Halo004/'
 BASE_PATH_HALO113 = '/central/groups/carnegie_poc/enadler/ncdm_resims/Halo113/'
@@ -45,8 +48,8 @@ h_cdm = 0.7
 threshold = 1.2*10**8*h_cdm
 
 mass_peak_sub_wdm3_004 = subhalos_wdm3_004[:][analysis]
-#mass_peak_sub_wdm3_113 = subhalos_wdm3_113[:][analysis]
-#mass_peak_sub_wdm3_023 = subhalos_wdm3_023[:][analysis]
+mass_peak_sub_wdm3_113 = subhalos_wdm3_113[:][analysis]
+mass_peak_sub_wdm3_023 = subhalos_wdm3_023[:][analysis]
 
 #cond_wdm3_004 = mass_sub_wdm3_004 > threshold
 #cond_wdm3_113 = mass_sub_wdm3_113 > threshold_1
@@ -56,20 +59,31 @@ mass_peak_sub_wdm3_004 = subhalos_wdm3_004[:][analysis]
 #print("Number of averaged subhaloes masses of 3keV WDM that surpassed the " + str(analysis) + " threshold " + str(threshold) + " is: " + str(mean_count_wdm3))
 
 # Filter subhaloes
-cond_wdm3_Mvir_cut = subhalos_wdm3_004[:][cut] > threshold
-mass_peak_with_Mvir_cut = mass_peak_sub_wdm3_004[cond_wdm3_Mvir_cut]
+cond_wdm3_Mvir_cut_004 = subhalos_wdm3_004[:][cut] > threshold
+mass_peak_with_Mvir_cut_004 = mass_peak_sub_wdm3_004[cond_wdm3_Mvir_cut_004]
+cond_wdm3_Mvir_cut_113 = subhalos_wdm3_113[:][cut] > threshold
+mass_peak_with_Mvir_cut_113 = mass_peak_sub_wdm3_113[cond_wdm3_Mvir_cut_113]
+cond_wdm3_Mvir_cut_023 = subhalos_wdm3_023[:][cut] > threshold
+mass_peak_with_Mvir_cut_023 = mass_peak_sub_wdm3_023[cond_wdm3_Mvir_cut_023]
 
-# Define mass bins (log scale)
-log_bins = np.linspace(7, 11, 10)
+# Define mass bins (log scale between 10**7 to 11)
+log_bins = np.linspace(7, 11, 12)
 bins = 10**log_bins
 bin_centers = 0.5 * (bins[1:] + bins[:-1])
 
 # Differential SHMF
-hist, _ = np.histogram(mass_peak_with_Mvir_cut, bins=bins)
-differential_shmf = hist / np.diff(log_bins)  # Normalize by bin width (log space)
+df1 = DataFrame(mass_peak_with_Mvir_cut_004)
+df2 = DataFrame(mass_peak_with_Mvir_cut_113)
+df3 = DataFrame(mass_peak_with_Mvir_cut_023)
+df_merged = pd.concat([df1, df2, df3], ignore_index=True)
+hist, _ = np.histogram(df_merged.values/3, bins=bins)
+differential_shmf = hist / (np.diff(log_bins))  # Normalize by bin width (log space)
 
 # Cumulative SHMF
 cumulative_shmf = np.cumsum(hist[::-1])[::-1]  # Reverse cumulative sum
+
+# Differential WDM SHMF
+beyond_CDM_SHMF.f_beyond_CDM(mass_peak_sub_wdm3_023, 10, 2.5, 0.9, 1.0)
 
 # Plot results
 plt.figure(figsize=(10, 6))
