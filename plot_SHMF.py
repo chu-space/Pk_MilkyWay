@@ -43,7 +43,7 @@ halos_wdm10 = readHlist(BASE_PATH_HALO4 + 'wdm_10/output_wdm_10/rockstar/hlists/
 host_wdm10 = halos_wdm10[halos_wdm10['id'] == 5142328]
 subhalos_wdm10 = halos_wdm10[halos_wdm10['upid']==host_wdm10['id']]
 
-# Constants
+# Constants: {Cuts, h_cdm, mass threshold}
 analysis = 'Mpeak'
 cut = 'Mvir'
 h_cdm = 0.7
@@ -93,7 +93,7 @@ diff_log_bins = np.logspace(np.log10(1.2e8),np.log10(mass_subhalos_wdm3_Mvir_004
 # Differential bin centers for plotting
 diff_bin_centers = 0.5 * (diff_log_bins[1:] + diff_log_bins[:-1])
 
-diff_hist, _ = np.histogram(df_merged_mean.values, bins=diff_log_bins)
+diff_hist, _ = np.histogram(df_merged_mean.values/h_cdm, bins=diff_log_bins)
 differential_shmf = diff_hist / (np.diff(log_bins))  # Normalize by bin width (log space)
 
 # Cummulative log bin choice
@@ -102,48 +102,51 @@ cumm_bins = 10**cumm_log_bins
 
 # Cummulative bin centers for plotting
 cumm_bin_centers = 0.5 * (cumm_bins[1:] + cumm_bins[:-1])
-cumm_hist, _ = np.histogram(df_merged_mean.values/0.7, bins=cumm_bins)
+cumm_hist, _ = np.histogram(df_merged_mean.values/h_cdm, bins=cumm_bins)
 
 # Cumulative SHMF
 cumulative_shmf = np.cumsum(cumm_hist[::-1])[::-1]  # Reverse cumulative sum
 
 # Differential WDM SHMF
-beyond_CDM_SHMF.f_beyond_CDM(df_merged.values, 10, 2.5, 0.9, 1.0)
+beyond_CDM_SHMF.f_beyond_CDM(df_merged.values/h_cdm, 10, 2.5, 0.9, 1.0)
 
 # COZMIC 1 paper data
-x_cumm = [102562564.77081062, 189508862.66108668, 466442535.165321, 887775605.6633633, 1679198194.49203, 2780024594.2117653, 6724184096.911058, 16411385971.133947, 25370856514.077957]
 y_cumm = [37.        , 36.33333333, 29.33333333, 19.33333333, 12.66666667,
          6.33333333,  3.        ,  0.33333333,  0.33333333]
+x_cumm = [102562564.77081062, 189508862.66108668, 466442535.165321, 887775605.6633633, 1679198194.49203, 2780024594.2117653, 6724184096.911058, 16411385971.133947, 25370856514.077957]
 
 y_diff = [17.        , 28.66666667, 18.        ,  5.66666667,  6.66666667,
          2.66666667,  0.66666667,  0.33333333]
-x_diff = [10**8,
-0.5*10**9,
-10**9,
-0.5*10**10,
-10**10, 0.5*10**11, 10**11, 0.5*10**12]
+x_diff = np.linspace(1.2e8,mass_subhalos_wdm3_Mvir_004[0]/(2.*0.7),8)
 
 # Plot results
 plt.figure(figsize=(10, 6))
 
 # Differential plot
-plt.subplot(1, 2, 1)
-plt.plot(diff_bin_centers, differential_shmf, label="Differential SHMF")
-plt.plot(x_diff,y_diff, label="Cozmic Differential")
-plt.xscale('log')
-plt.yscale('log')
-plt.xlabel(r'$M_{\mathrm{sub}}$')
-plt.ylabel(r'$dN/dM$')
-plt.legend()
+ax1 = plt.subplot(1, 2, 1)
+ax1.plot(diff_bin_centers, differential_shmf, label="Differential SHMF")
+ax1.plot(x_diff, y_diff, label="Cozmic Differential")
+ax1.set_xscale('log')
+ax1.set_yscale('log')
+ax1.set_xlabel(r'$M_{\mathrm{sub}}$')
+ax1.set_ylabel(r'$dN/dM$')
+ax1.legend()
 
 # Cumulative plot
-plt.subplot(1, 2, 2)
-plt.plot(cumm_bin_centers, cumulative_shmf, label="Cumulative SHMF")
-plt.plot(x_cumm,y_cumm, label="Cozmic Cumulative")
-plt.xscale('log')
-plt.xlabel(r'$M_{\mathrm{sub}}$')
-plt.ylabel(r'$N(>M)$')
-plt.legend()
+ax2 = plt.subplot(1, 2, 2)
+ax2.plot(cumm_bin_centers, cumulative_shmf, label="Cumulative SHMF")
+ax2.plot(x_cumm,y_cumm, label="Cozmic Cumulative")
+
+# Cumulative plot style
+ax2.set_xlim(10**8.0,10**10.5)
+ax2.set_ylim([1,150])
+ax2.set_xscale('log')
+ax2.set_yscale('log')
+ax2.set_yticks([1,3,10,30,100])
+ax2.set_yticklabels([r'$1$',r'$3$',r'$10$',r'$30$',r'$100$'],fontsize=17)
+ax2.set_xlabel(r'$M_{\mathrm{sub}}$')
+ax2.set_ylabel(r'$N(>M)$')
+ax2.legend()
 
 plt.tight_layout()
 plt.show()
