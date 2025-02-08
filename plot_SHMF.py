@@ -11,6 +11,12 @@ BASE_PATH_HALO113 = '/central/groups/carnegie_poc/enadler/ncdm_resims/Halo113/'
 BASE_PATH_HALO023 = '/central/groups/carnegie_poc/enadler/ncdm_resims/Halo023/'
 
 # Accessing the three host halos from the COZMIC 1 suite of simulations
+HALO_LIST = {'Halo004', 'Halo113', 'Halo23'}
+HALO_TYPES = {'wdm_3', 'wdm_4', 'wdm_5', 'wdm_6', 'wdm_6.5', 'wdm_10'}
+HALO_IDS = {1889038, 3365592, 1801126}
+
+#take in a list of halos, then for each halo go through each id
+
 halos_wdm3_004 = readHlist(BASE_PATH_HALO4 + 'wdm_3/output_wdm_3/rockstar/hlists/hlist_1.00000.list')
 host_wdm3_004 = halos_wdm3_004[halos_wdm3_004['id'] == 1889038]
 subhalos_wdm3_004 = halos_wdm3_004[halos_wdm3_004['upid']==host_wdm3_004['id']]
@@ -98,7 +104,8 @@ diff_hist_2, _ = np.histogram(mass_peak_with_Mvir_cut_113/h_cdm, bins=diff_log_b
 diff_hist_3, _ = np.histogram(mass_peak_with_Mvir_cut_023/h_cdm, bins=diff_log_bins)
 
 # Differential SHMF Mean
-diff_mean = (diff_hist_1 + diff_hist_2 + diff_hist_3)* np.diff(log_bins)[0]/(np.diff(np.log10(diff_log_bins))[0]*3) # Normalize by bin width (log space)
+diff_mean = np.mean([diff_hist_1, diff_hist_2, diff_hist_3], axis=0) # Normalize by bin width (log space)
+#* np.diff(log_bins)[0]/(np.diff(np.log10(diff_log_bins))[0]*3)
 
 # Cummulative log bin choice
 cumm_log_bins = np.linspace(7.5,11,10)
@@ -112,7 +119,11 @@ cumm_hist_2, _ = np.histogram(mass_peak_with_Mvir_cut_113/h_cdm, bins=cumm_bins)
 cumm_hist_3, _ = np.histogram(mass_peak_with_Mvir_cut_023/h_cdm, bins=cumm_bins)
 
 # Cumulative SHMF
-cumm_mean = np.cumsum(cumm_hist_1 + cumm_hist_2 + cumm_hist_3[::-1])[::-1]/3 # Reverse cumulative sum
+cumm_mean_1 = np.cumsum(cumm_hist_1[::-1])[::-1] # Reverse cumulative sum
+cumm_mean_2 = np.cumsum(cumm_hist_2[::-1])[::-1] # Reverse cumulative sum
+cumm_mean_3 = np.cumsum(cumm_hist_3[::-1])[::-1] # Reverse cumulative sum
+
+total_cumm_mean = np.mean([cumm_mean_1, cumm_mean_2, cumm_mean_3], axis=0)
 
 # Differential WDM SHMF
 # beyond_CDM_SHMF.f_beyond_CDM(diff_mean/h_cdm, 10, 2.5, 0.9, 1.0)
@@ -145,7 +156,7 @@ ax1.legend()
 
 # Cumulative plot
 ax2 = plt.subplot(1, 2, 2)
-ax2.plot(cumm_bin_centers, cumm_mean, label="Cumulative SHMF")
+ax2.plot(cumm_bin_centers, total_cumm_mean, label="Cumulative SHMF")
 ax2.plot(x_cumm,y_cumm, label="Cozmic Cumulative")
 
 # Cumulative plot style
