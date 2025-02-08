@@ -95,17 +95,20 @@ log_bins = np.linspace(7, 12, 10)
 bins = 10**log_bins
 
 # Ethan's mass log bin choice - upper limit is 0.5*M_vir,host
-diff_log_bins = np.logspace(np.log10(1.2e8),np.log10(mass_subhalos_wdm3_Mvir_004[0]/(2.*0.7)),10)
-# Differential bin centers for plotting
-diff_bin_centers = 0.5 * (diff_log_bins[1:] + diff_log_bins[:-1])
+diff_log_bins_004 = np.logspace(np.log10(1.2e8),np.log10(host_wdm3_004[cut][0]/(2.*0.7)),10)
+diff_log_bins_113 = np.logspace(np.log10(1.2e8),np.log10(host_wdm3_113[cut][0]/(2.*0.7)),10)
+diff_log_bins_023 = np.logspace(np.log10(1.2e8),np.log10(host_wdm3_023[cut][0]/(2.*0.7)),10)
 
-diff_hist_1, _ = np.histogram(mass_peak_with_Mvir_cut_004/h_cdm, bins=diff_log_bins)
-diff_hist_2, _ = np.histogram(mass_peak_with_Mvir_cut_113/h_cdm, bins=diff_log_bins)
-diff_hist_3, _ = np.histogram(mass_peak_with_Mvir_cut_023/h_cdm, bins=diff_log_bins)
+# Differential bin centers for plotting
+#Calculating differential SHMF
+diff_hist_1, _ = np.histogram(np.log10(mass_peak_with_Mvir_cut_004/h_cdm), bins=np.log10(diff_log_bins_004), density = False)
+diff_hist_2, _ = np.histogram(np.log10(mass_peak_with_Mvir_cut_113/h_cdm), bins=np.log10(diff_log_bins_113), density = False)
+diff_hist_3, _ = np.histogram(np.log10(mass_peak_with_Mvir_cut_023/h_cdm), bins=np.log10(diff_log_bins_023), density = False)
 
 # Differential SHMF Mean
-diff_mean = np.mean([diff_hist_1, diff_hist_2, diff_hist_3], axis=0) # Normalize by bin width (log space)
-#* np.diff(log_bins)[0]/(np.diff(np.log10(diff_log_bins))[0]*3)
+diff_mean = np.mean([diff_hist_1, diff_hist_2, diff_hist_3], axis=0)
+diff_mean_log_bin = np.mean([diff_log_bins_004, diff_log_bins_113, diff_log_bins_023], axis = 0)
+diff_bin_centers = 0.5 * (diff_mean_log_bin[1:] + diff_mean_log_bin[:-1])
 
 # Cummulative log bin choice
 cumm_log_bins = np.linspace(7.5,11,10)
@@ -135,8 +138,8 @@ x_cumm = [7.74263683e+07, 1.89573565e+08, 4.64158883e+08, 1.13646367e+09,
  2.78255940e+09, 6.81292069e+09, 1.66810054e+10, 4.08423865e+10,
  1.00000000e+11]
 
-y_diff = [17.        , 28.66666667, 18.        ,  5.66666667,  6.66666667,
-         2.66666667,  0.66666667,  0.33333333, 0.]
+y_diff = [3.33333333, 11.        ,  8.        ,  6.33333333,  5.33333333,
+         2.        ,  0.66666667,  0.33333333,  0.        ]
 x_diff = [1.92306942e+08, 4.93881087e+08, 1.26838130e+09, 3.25744628e+09,
        8.36574640e+09, 2.14848402e+10, 5.51771877e+10, 1.41705594e+11,
        3.63927126e+11]
@@ -157,6 +160,7 @@ ax1.legend()
 # Cumulative plot
 ax2 = plt.subplot(1, 2, 2)
 ax2.plot(cumm_bin_centers, total_cumm_mean, label="Cumulative SHMF")
+ax2.plot(diff_bin_centers, np.cumsum(diff_mean[::-1])[::-1], label="Differential SHMF")
 ax2.plot(x_cumm,y_cumm, label="Cozmic Cumulative")
 
 # Cumulative plot style
