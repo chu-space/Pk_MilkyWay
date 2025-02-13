@@ -75,21 +75,6 @@ mass_peak_with_Mvir_cut_004 = mass_peak_sub_wdm3_004[cond_wdm3_Mvir_cut_004]
 mass_peak_with_Mvir_cut_113 = mass_peak_sub_wdm3_113[cond_wdm3_Mvir_cut_113]
 mass_peak_with_Mvir_cut_023 = mass_peak_sub_wdm3_023[cond_wdm3_Mvir_cut_023]
 
-# # Subhalo peak mass cuts: Getting the merged mean of all the subhaloe peak masses made with this cut
-# df1 = DataFrame(mass_peak_with_Mvir_cut_004)
-# df2 = DataFrame(mass_peak_with_Mvir_cut_113)
-# df3 = DataFrame(mass_peak_with_Mvir_cut_023)
-
-# # Merge the data frames and take the mean of them
-# # This is where statistical errors may take place
-# df_merged = pd.concat([df1, df2, df3])
-# by_row_index = df_merged.groupby(df_merged.index)
-# df_merged_mean = by_row_index.mean()
-
-# Merged array of virial mass
-# This is where statistical errors may take place (overcounting?)
-# df_merged_Mvir = pd.concat([DataFrame(mass_subhalos_wdm3_Mvir_004), DataFrame(mass_subhalos_wdm3_Mvir_113), DataFrame(mass_subhalos_wdm3_Mvir_023)])
-
 # Define mass bins
 log_bins = np.linspace(7, 12, 10)
 bins = 10**log_bins
@@ -99,57 +84,86 @@ diff_log_bins_004 = np.logspace(np.log10(1.2e8),np.log10(host_wdm3_004[cut][0]/(
 diff_log_bins_113 = np.logspace(np.log10(1.2e8),np.log10(host_wdm3_113[cut][0]/(2.*0.7)),10)
 diff_log_bins_023 = np.logspace(np.log10(1.2e8),np.log10(host_wdm3_023[cut][0]/(2.*0.7)),10)
 
-# Differential bin centers for plotting
-#Calculating differential SHMF
-diff_hist_1, _ = np.histogram(np.log10(mass_peak_with_Mvir_cut_004/h_cdm), bins=np.log10(diff_log_bins_004), density = False)
-diff_hist_2, _ = np.histogram(np.log10(mass_peak_with_Mvir_cut_113/h_cdm), bins=np.log10(diff_log_bins_113), density = False)
-diff_hist_3, _ = np.histogram(np.log10(mass_peak_with_Mvir_cut_023/h_cdm), bins=np.log10(diff_log_bins_023), density = False)
+# Calculating differential SHMF
+diff_hist_1, test_1 = np.histogram(np.log10(mass_peak_with_Mvir_cut_004/h_cdm), bins=np.log10(diff_log_bins_004), density = False)
+diff_hist_2, test_2 = np.histogram(np.log10(mass_peak_with_Mvir_cut_113/h_cdm), bins=np.log10(diff_log_bins_113), density = False)
+diff_hist_3, test_3 = np.histogram(np.log10(mass_peak_with_Mvir_cut_023/h_cdm), bins=np.log10(diff_log_bins_023), density = False)
 
 # Differential SHMF Mean
 diff_mean = np.mean([diff_hist_1, diff_hist_2, diff_hist_3], axis=0)
 diff_mean_log_bin = np.mean([diff_log_bins_004, diff_log_bins_113, diff_log_bins_023], axis = 0)
 diff_bin_centers = 0.5 * (diff_mean_log_bin[1:] + diff_mean_log_bin[:-1])
 
+
+test_mean_bins = np.mean([test_1, test_2, test_3], axis=0)
+print('test_mean_bins: ', 10**diff_log_bins_023[1:])
 # Cummulative log bin choice
 cumm_log_bins = np.linspace(7.5,11,10)
 cumm_bins = 10**cumm_log_bins
 
-# Cummulative bin centers for plotting
-cumm_bin_centers = 0.5 * (cumm_bins[1:] + cumm_bins[:-1])
+cumm_bin_centers = cumm_bins[1:]
+print('cumm_bin_centers: ', cumm_bin_centers)
 
-cumm_hist_1, _ = np.histogram(mass_peak_with_Mvir_cut_004/h_cdm, bins=cumm_bins)
-cumm_hist_2, _ = np.histogram(mass_peak_with_Mvir_cut_113/h_cdm, bins=cumm_bins)
-cumm_hist_3, _ = np.histogram(mass_peak_with_Mvir_cut_023/h_cdm, bins=cumm_bins)
+cumm_hist_1, cumm_base_1 = np.histogram(mass_peak_with_Mvir_cut_004/h_cdm, bins=cumm_bins)
+cumm_hist_2, cumm_base_2 = np.histogram(mass_peak_with_Mvir_cut_113/h_cdm, bins=cumm_bins)
+cumm_hist_3, cumm_base_3 = np.histogram(mass_peak_with_Mvir_cut_023/h_cdm, bins=cumm_bins)
+print(np.mean([cumm_base_1, cumm_base_2, cumm_base_3], axis=0))
 
 # Cumulative SHMF
-cumm_mean_1 = np.cumsum(cumm_hist_1[::-1])[::-1] # Reverse cumulative sum
-cumm_mean_2 = np.cumsum(cumm_hist_2[::-1])[::-1] # Reverse cumulative sum
-cumm_mean_3 = np.cumsum(cumm_hist_3[::-1])[::-1] # Reverse cumulative sum
+# Instead of reverse cumulative sum, subtract the length of the array from the histogram
+# How many subhaloes meet the cut
+# CDM8K_cumulative = np.cumsum(CDM8K_values)
+# len(sim_data[halo_num]['cdm'][2]['Mpeak'][ind])
+# -CDM8K_cumulative histogram
+
+#     CDM8K_values, CDM8K_base = np.histogram(np.log10(sim_data[halo_num]['cdm'][2]['Mpeak'][ind]/0.7), bins=bins)
+#     CDM8K_cumulative = np.cumsum(CDM8K_values)
+#     cdm_shmf.append(len(sim_data[halo_num]['cdm'][2]['Mpeak'][ind])-CDM8K_cumulative)
+
+# cdm_shmf = np.array(cdm_shmf)
+
+# cdm = ax.plot(CDM8K_base[1:], np.mean(cdm_shmf,axis=0),
+#            'k',ls=':',lw=2,label='$\mathrm{CDM}$')
+
+cumm_mean_1 = np.cumsum(cumm_hist_1[::-1])[::-1]
+cumm_mean_2 = np.cumsum(cumm_hist_2[::-1])[::-1]
+cumm_mean_3 = np.cumsum(cumm_hist_3[::-1])[::-1]
 
 total_cumm_mean = np.mean([cumm_mean_1, cumm_mean_2, cumm_mean_3], axis=0)
+CDM8K_cumulative_1 = np.cumsum(total_cumm_mean)
+print('CDM8K_cumulative_1: ', CDM8K_cumulative_1)
 
-# Differential WDM SHMF
-# beyond_CDM_SHMF.f_beyond_CDM(diff_mean/h_cdm, 10, 2.5, 0.9, 1.0)
+total_cumm_mean = np.mean([cumm_hist_1, cumm_hist_2, cumm_hist_3], axis=0)
+CDM8K_cumulative_2 = np.cumsum(total_cumm_mean[::-1])[::-1]
+print('CDM8K_cumulative_2: ', CDM8K_cumulative_2)
 
 # COZMIC 1 paper data
 y_cumm = [37.        , 36.33333333, 29.33333333, 19.33333333, 12.66666667,
          6.33333333,  3.        ,  0.33333333,  0.33333333]
+# x_cumm matches
 x_cumm = [7.74263683e+07, 1.89573565e+08, 4.64158883e+08, 1.13646367e+09,
- 2.78255940e+09, 6.81292069e+09, 1.66810054e+10, 4.08423865e+10,
- 1.00000000e+11]
+       2.78255940e+09, 6.81292069e+09, 1.66810054e+10, 4.08423865e+10,
+       1.00000000e+11]
 
+# diff mean matches
 y_diff = [3.33333333, 11.        ,  8.        ,  6.33333333,  5.33333333,
          2.        ,  0.66666667,  0.33333333,  0.        ]
+# NOTE: USES HOST023 DATA
 x_diff = [1.92306942e+08, 4.93881087e+08, 1.26838130e+09, 3.25744628e+09,
        8.36574640e+09, 2.14848402e+10, 5.51771877e+10, 1.41705594e+11,
        3.63927126e+11]
+
+# Next steps:
+# Continue to work on adjusting the cumulative plot
+# Plot Figure 11
+# Streamline pipeline for all of the DM models
 
 # Plot results
 plt.figure(figsize=(10, 6))
 
 # Differential plot
 ax1 = plt.subplot(1, 2, 1)
-ax1.plot(diff_bin_centers, diff_mean, label="Differential SHMF")
+ax1.plot(10**diff_log_bins_023[1:], diff_mean, label="Differential SHMF")
 ax1.plot(x_diff, y_diff, label="Cozmic Differential")
 ax1.set_xscale('log')
 ax1.set_yscale('log')
@@ -157,10 +171,15 @@ ax1.set_xlabel(r'$M_{\mathrm{sub}}$')
 ax1.set_ylabel(r'$dN/dM$')
 ax1.legend()
 
+print('Cumulative Sum: ', np.cumsum(diff_mean[::-1])[::-1])
+print('total_cumm_mean: ', total_cumm_mean)
+print('x_cumm: ', x_cumm)
+print('y_cumm: ', y_cumm)
+
 # Cumulative plot
 ax2 = plt.subplot(1, 2, 2)
 ax2.plot(cumm_bin_centers, total_cumm_mean, label="Cumulative SHMF")
-ax2.plot(diff_bin_centers, np.cumsum(diff_mean[::-1])[::-1], label="Differential SHMF")
+ax2.plot(cumm_bin_centers, np.cumsum(diff_mean[::-1])[::-1], label="Differential SHMF")
 ax2.plot(x_cumm,y_cumm, label="Cozmic Cumulative")
 
 # Cumulative plot style
