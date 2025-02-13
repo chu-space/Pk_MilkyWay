@@ -97,17 +97,15 @@ diff_bin_centers = 0.5 * (diff_mean_log_bin[1:] + diff_mean_log_bin[:-1])
 
 test_mean_bins = np.mean([test_1, test_2, test_3], axis=0)
 print('test_mean_bins: ', 10**diff_log_bins_023[1:])
+
 # Cummulative log bin choice
 cumm_log_bins = np.linspace(7.5,11,10)
 cumm_bins = 10**cumm_log_bins
-
 cumm_bin_centers = cumm_bins[1:]
-print('cumm_bin_centers: ', cumm_bin_centers)
 
 cumm_hist_1, cumm_base_1 = np.histogram(mass_peak_with_Mvir_cut_004/h_cdm, bins=cumm_bins)
 cumm_hist_2, cumm_base_2 = np.histogram(mass_peak_with_Mvir_cut_113/h_cdm, bins=cumm_bins)
 cumm_hist_3, cumm_base_3 = np.histogram(mass_peak_with_Mvir_cut_023/h_cdm, bins=cumm_bins)
-print(np.mean([cumm_base_1, cumm_base_2, cumm_base_3], axis=0))
 
 # Cumulative SHMF
 # Instead of reverse cumulative sum, subtract the length of the array from the histogram
@@ -125,17 +123,9 @@ print(np.mean([cumm_base_1, cumm_base_2, cumm_base_3], axis=0))
 # cdm = ax.plot(CDM8K_base[1:], np.mean(cdm_shmf,axis=0),
 #            'k',ls=':',lw=2,label='$\mathrm{CDM}$')
 
-cumm_mean_1 = np.cumsum(cumm_hist_1[::-1])[::-1]
-cumm_mean_2 = np.cumsum(cumm_hist_2[::-1])[::-1]
-cumm_mean_3 = np.cumsum(cumm_hist_3[::-1])[::-1]
-
-total_cumm_mean = np.mean([cumm_mean_1, cumm_mean_2, cumm_mean_3], axis=0)
-CDM8K_cumulative_1 = np.cumsum(total_cumm_mean)
-print('CDM8K_cumulative_1: ', CDM8K_cumulative_1)
-
 total_cumm_mean = np.mean([cumm_hist_1, cumm_hist_2, cumm_hist_3], axis=0)
-CDM8K_cumulative_2 = np.cumsum(total_cumm_mean[::-1])[::-1]
-print('CDM8K_cumulative_2: ', CDM8K_cumulative_2)
+cumm_mean_reverse = np.cumsum(total_cumm_mean[::-1])[::-1]
+print('cumm_mean_reverse: ', cumm_mean_reverse)
 
 # COZMIC 1 paper data
 y_cumm = [37.        , 36.33333333, 29.33333333, 19.33333333, 12.66666667,
@@ -171,15 +161,15 @@ ax1.set_xlabel(r'$M_{\mathrm{sub}}$')
 ax1.set_ylabel(r'$dN/dM$')
 ax1.legend()
 
-print('Cumulative Sum: ', np.cumsum(diff_mean[::-1])[::-1])
-print('total_cumm_mean: ', total_cumm_mean)
+print('cumm_bin_centers: ', cumm_bin_centers)
+print('cumulative sum: ', np.cumsum(diff_mean[::-1])[::-1])
 print('x_cumm: ', x_cumm)
 print('y_cumm: ', y_cumm)
 
 # Cumulative plot
 ax2 = plt.subplot(1, 2, 2)
-ax2.plot(cumm_bin_centers, total_cumm_mean, label="Cumulative SHMF")
-ax2.plot(cumm_bin_centers, np.cumsum(diff_mean[::-1])[::-1], label="Differential SHMF")
+#ax2.plot(cumm_bin_centers, cumm_mean_reverse, label="Cumulative SHMF")
+ax2.plot(cumm_bin_centers, np.cumsum(diff_mean[::-1])[::-1], label="Differential SHMF Cumulative Summed")
 ax2.plot(x_cumm,y_cumm, label="Cozmic Cumulative")
 
 # Cumulative plot style
