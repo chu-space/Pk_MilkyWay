@@ -67,7 +67,7 @@ def load_data_with_dynamic_headers(filepath):
 # --- 1. Load Data ---
 try:
     data = np.loadtxt("corrected_new_camb_n_4_idm_1GeV_halfmode_Tk.dat")
-    data2 = np.loadtxt("data_tk/idm_1e-4GeV_halfmode_Tk.dat")
+    data2 = np.loadtxt("camb_data_tk/idm_1e-4GeV_halfmode_Tk.dat")
     data3 = load_data_with_dynamic_headers("output/cdm_for_camb00_tk.dat")
 except FileNotFoundError as e:
     print(f"Error: Could not find a data file. {e}")
