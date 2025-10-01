@@ -3,42 +3,49 @@ import matplotlib.pyplot as plt
 import subprocess
 import os
 
+# --- Constants ---
+h = 0.7
+npow_dmeff = 2
+idm_mass = 1e-4                  # GeV
+sig_values = [4.2e-28, 2.8e-27]  # cm^2
+colors = ["#59655F", '#3CFF97']  # Dark Gray, Aqua Green
+
 # --- Paths and Setup ---
 cdm_ini_template = "base_cdm_template.ini"
 idm_ini_template = "base_idm_template.ini"
-output_dir = "new_change_repo"
+output_dir = "correct_n_2_repo"
 os.makedirs(output_dir, exist_ok=True)
 
 # --- Load Precomputed Data from .npy Files ---
 try:
     # This array is used as the COMMON K-GRID for interpolation
-    k_halfmode = np.load("halfmode_k_idm_1e-4_n4.npy", allow_pickle=True)
-    k_envelope = np.load("envelope_k_idm_1e-4_n4.npy", allow_pickle=True)
+    k_halfmode_raw = np.load("COZMIC_IDM_Tk/halfmode_k_idm_1e-4_n2.npy", allow_pickle=True)
+    k_envelope_raw = np.load("COZMIC_IDM_Tk/envelope_k_idm_1e-4_n2.npy", allow_pickle=True)
     wdm_data_raw = np.load('6.5_wdm_transfer.npy', allow_pickle=True)
     cdm_T_raw = np.load('6.5_cdm_transfer.npy', allow_pickle=True)
 
     # IDM Power spectrum for models
-    rui_halfmode_T_raw = np.load("halfmode_idm_1e-4_n4.npy", allow_pickle=True)
-    rui_envelope_T_raw = np.load("envelope_idm_1e-4_n4.npy", allow_pickle=True)
+    rui_halfmode_T_raw = np.load("COZMIC_IDM_Tk/halfmode_idm_1e-4_n2.npy", allow_pickle=True)
+    rui_envelope_T_raw = np.load("COZMIC_IDM_Tk/envelope_idm_1e-4_n2.npy", allow_pickle=True)
 
     # CDM Power spectrum for models
-    halfmode_cdm_comparison_T_raw = np.load("halfmode_cdm_1e-4_n4.npy", allow_pickle=True)
-    envelope_cdm_comparison_T_raw = np.load("envelope_cdm_1e-4_n4.npy", allow_pickle=True)
+    halfmode_cdm_comparison_T_raw = np.load("COZMIC_IDM_Tk/halfmode_cdm_1e-4_n2.npy", allow_pickle=True)
+    envelope_cdm_comparison_T_raw = np.load("COZMIC_IDM_Tk/envelope_cdm_1e-4_n2.npy", allow_pickle=True)
 
 except FileNotFoundError as e:
     print(f"Error: Could not find a required data file: {e.filename}")
     exit()
 
-# --- IDM Parameters to Simulate ---
-sig_values = [2.22e-27, 3.4e-26]  # cm^2
-idm_mass = 1e-4                  # GeV
-npow_dmeff = 4
-colors = ["#59655F", '#3CFF97']
+# === FIX 1: Convert ALL reference K-values from h/Mpc to Mpc^-1 by multiplying by h ===
+k_halfmode = k_halfmode_raw * h
+k_envelope = k_envelope_raw * h
+wdm_data_raw[:, 0] = wdm_data_raw[:, 0] * h # Convert WDM k-values
 
 # --- Helper Function: Run CLASS and Read P(k) (No changes needed) ---
 def run_class_and_get_pk(ini_path):
     """Runs CLASS with a given .ini file and returns the power spectrum."""
     try:
+        # Note: CLASS output k is in units of h/Mpc
         result = subprocess.run(["./class", ini_path], check=True, capture_output=True, text=True)
         root = None
         with open(ini_path) as f:
@@ -76,8 +83,6 @@ def find_halfmode_k(k_vals, T2_vals):
 
     # Check if the curve is strictly decreasing at the cross point for log-linear interp
     if T1 <= T2:
-        # T^2 is not decreasing smoothly, log-linear interpolation might fail.
-        # Falling back to linear interpolation for robustness near edge cases.
         return np.interp(0.25, [T1, T2], [k1, k2])
 
     log_k1, log_k2 = np.log(k1), np.log(k2)
@@ -86,7 +91,7 @@ def find_halfmode_k(k_vals, T2_vals):
     log_k_half = log_k1 + (0.25 - T1) / m
     return np.exp(log_k_half)
 
-# --- 1. Run Baseline CDM model ---
+# --- 2. Run Baseline CDM model ---
 print("Running baseline CDM simulation...")
 cdm_run_ini = os.path.join(output_dir, "cdm_run.ini")
 with open(cdm_ini_template) as f_in, open(cdm_run_ini, "w") as f_out:
@@ -98,27 +103,26 @@ with open(cdm_ini_template) as f_in, open(cdm_run_ini, "w") as f_out:
 
 k_cdm_raw_h, pk_cdm_raw = run_class_and_get_pk(cdm_run_ini)
 
-h = 0.7
-k_cdm_raw = k_cdm_raw_h / h
+# FIX 2: Correctly convert k from h/Mpc to Mpc^-1 by MULTIPLYING by h
+k_cdm_raw = k_cdm_raw_h * h
 
-# FIX 1: Interpolate CDM P(k) onto the common k_halfmode grid
 pk_cdm_interp = np.interp(k_halfmode, k_cdm_raw, pk_cdm_raw)
 
-# --- 2. Setup Plot (No changes needed) ---
+# --- 3. Setup Plot ---
 fig, ax = plt.subplots(figsize=(10, 7))
 ax.set_xscale('log')
 ax.set_xlabel(r'$k \ [\mathrm{Mpc}^{-1}]$', fontsize=16)
 ax.set_ylabel(r'$T^2(k) = P_{\mathrm{model}}(k) / P_{\mathrm{CDM}}(k)$', fontsize=16)
 ax.set_xlim([1e-3, 1e3])
-ax.set_ylim([0, 1.05]) # Adjusted limit to 1.05 to match image better
+ax.set_ylim([0, 1.05])
 ax.grid(True, which="both", linestyle='--', linewidth=0.5)
 
-# --- 3. Plot Reference Data (No changes needed) ---
+# --- 4. Plot Reference Data (using new, converted k-values) ---
 ax.plot(wdm_data_raw[:, 0], wdm_data_raw[:, 1] / cdm_T_raw, label="WDM 6.5 keV (Simulated)", lw=2.5, color='dodgerblue')
-ax.plot(k_halfmode, rui_halfmode_T_raw / halfmode_cdm_comparison_T_raw, label="Rui (Half-mode)", lw=2.5, color='crimson', linestyle='--')
-ax.plot(k_envelope, rui_envelope_T_raw / envelope_cdm_comparison_T_raw, label="Rui (Envelope)", lw=2.5, color='orange', linestyle=':')
+ax.plot(k_halfmode, rui_halfmode_T_raw[:, 1] / halfmode_cdm_comparison_T_raw, label="Rui (Half-mode)", lw=2.5, color='crimson', linestyle='--')
+ax.plot(k_envelope, rui_envelope_T_raw[:, 1] / envelope_cdm_comparison_T_raw, label="Rui (Envelope)", lw=2.5, color='orange', linestyle=':')
 
-# --- 4. Run IDM models and Plot ---
+# --- 5. Run IDM models and Plot ---
 print("Running IDM simulations...")
 for idx, sig in enumerate(sig_values):
     ini_path = os.path.join(output_dir, f"idm_sig_{sig:.1e}.ini")
@@ -133,19 +137,21 @@ for idx, sig in enumerate(sig_values):
             else: f_out.write(line)
 
     k_idm_raw_h, pk_idm_raw = run_class_and_get_pk(ini_path)
-    k_idm_raw = k_idm_raw_h / h
 
-    # FIX 2: Interpolate IDM P(k) onto the common k_halfmode grid
+    # FIX 3: Correctly convert k from h/Mpc to Mpc^-1 by MULTIPLYING by h
+    k_idm_raw = k_idm_raw_h * h
+
     pk_idm_interp = np.interp(k_halfmode, k_idm_raw, pk_idm_raw)
-
-    # FIX 3: Calculate T^2 using the correctly interpolated arrays
     T2 = pk_idm_interp / pk_cdm_interp
 
-    # Plot T^2 against the common k_halfmode grid
-    ax.plot(k_halfmode, T2, color=colors[idx], linewidth=3,
-            label=fr'IDM $\sigma = {sig:.1e}$ cm$^2$')
+    if idx == 0:
+        label_text = fr'IDM $\sigma = 4.2\text{{e}}-28\ \text{{cm}}^2$'
+    else:
+        label_text = fr'IDM $\sigma = 2.8\text{{e}}-27\ \text{{cm}}^2$'
 
-    # Find k_half using the common k_halfmode grid and the correctly calculated T2
+    ax.plot(k_halfmode, T2, color=colors[idx], linewidth=3,
+            label=label_text)
+
     k_half = find_halfmode_k(k_halfmode, T2)
     if not np.isnan(k_half):
         ax.axvline(k_half, color=colors[idx], linestyle=':', alpha=0.8, linewidth=2)
@@ -154,10 +160,10 @@ for idx, sig in enumerate(sig_values):
         print(f"  -> IDM σ={sig:.2e} cm²: Half-mode not found in k-range.")
 
 # --- Final Touches ---
-ax.axhline(1.0, color='mediumspringgreen', linestyle='-', lw=1.5) # Added T^2=1 line for context
-ax.axhline(0.25, color='gray', linestyle='-', alpha=1.0, lw=1.5, label=r'Half-mode ($T^2 = 0.25$)') # Changed color to gray to match image
+ax.axhline(1.0, color='mediumspringgreen', linestyle='-', lw=1.5)
+ax.axhline(0.25, color='gray', linestyle='-', alpha=1.0, lw=1.5, label=r'Half-mode ($\mathrm{T}^2 = 0.25$)')
 ax.legend(fontsize=11)
 fig.tight_layout()
-fig.savefig('idm_wdm_transfer_comparison_fixed.pdf', dpi=300)
-print("\nPlot saved to idm_wdm_transfer_comparison_fixed.pdf")
+fig.savefig('n_2_1e-4GeV_idm_wdm_transfer_comparison_final.pdf', dpi=300)
+print("\nPlot saved to n_2_1e-4GeV_idm_wdm_transfer_comparison_final.pdf")
 plt.show()
