@@ -1,0 +1,89 @@
+%Filenames and file formats
+OutputDir output_n2_1e-1GeV_intermediate_halfmode
+InitCondFile /central/groups/carnegie_poc/achu/n2_1e-1GeV_intermediate_halfmode/ic/ic_gadget_dist
+NumFilesPerSnapshot             8
+
+%Filenames and file formats (using default values)
+SnapshotFileBase                snapshot
+SnapFormat                      1
+ICFormat                        1
+RestartFile                     restart
+InfoFile                        info.txt
+TimingsFile                     timings.txt
+CpuFile                         cpu.txt
+EnergyFile                      energy.txt
+
+%CPU-time limit and restart options
+TimeLimitCPU                    604800
+ResubmitCommand                 xyz.sh
+ResubmitOn                      0
+CpuTimeBetRestartFile           3600
+
+%Simulation specific parameters
+TimeBegin                       0.01
+TimeMax                         1.0
+BoxSize                         125.0
+PeriodicBoundariesOn            1
+ComovingIntegrationOn           1
+
+%Cosmological parameters
+HubbleParam                     0.7
+Omega0                          0.286
+OmegaLambda                     0.714
+OmegaBaryon                     0.04         % has no effect
+
+%Memory allocation
+BufferSize                      200
+PartAllocFactor                 5.0
+TreeAllocFactor                 2.0
+
+%Gravitational force accuracy
+TypeOfOpeningCriterion          1
+ErrTolTheta                     0.5
+ErrTolForceAcc                  0.005
+
+%Time integration accuracy
+MaxSizeTimestep                 0.01
+MinSizeTimestep                 0
+TypeOfTimestepCriterion         0            % can only be 0
+ErrTolIntAccuracy               0.01
+TreeDomainUpdateFrequency       0.05
+MaxRMSDisplacementFac           0.15
+
+%Output of snapshot files
+OutputListOn                    0
+OutputListFilename              output_times.txt
+TimeOfFirstSnapshot             0.05
+TimeBetSnapshot                 1.0128294
+TimeBetStatistics               0.1
+NumFilesWrittenInParallel       8
+
+%System of units
+UnitVelocity_in_cm_per_s        1e5
+UnitLength_in_cm                3.085678e24  % use Mpc instead of kpc
+UnitMass_in_g                   1.989e43
+GravityConstantInternal         0
+
+%SPH parameters (not used in this simulation)
+DesNumNgb                       64
+MaxNumNgbDeviation              2
+ArtBulkViscConst                1.0
+CourantFac                      0.15
+InitGasTemp                     10000
+MinGasTemp                      20
+MinGasHsmlFractional            0.1
+
+%Gravitational softening
+SofteningGas                    0
+SofteningHalo                   0.00017
+SofteningDisk                   0.00068
+SofteningBulge                  0.00150
+SofteningStars                  0.00300
+SofteningBndry                  0.01200
+SofteningGasMaxPhys             0
+SofteningHaloMaxPhys            0.00017
+SofteningDiskMaxPhys            0.00068
+SofteningBulgeMaxPhys           0.00150
+SofteningStarsMaxPhys           0.00300
+SofteningBndryMaxPhys           0.01200
+
