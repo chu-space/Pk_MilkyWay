@@ -1,0 +1,768 @@
+================================================================================
+SPECIES COMPARISON SUMMARY REPORT
+================================================================================
+
+Total models processed: 24
+Output directory: CAMB_species_comparisons_all_models
+Date: 2025-12-24T14:59:38
+
+
+------------------------------------------------------------
+GROUP: N=2_HALFMODE
+------------------------------------------------------------
+
+Model: n2_m1e-4_halfmode
+  Mass: 1e-4 GeV, σ: 4.2e-28
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1e-4_halfmode.png
+  Statistics:
+    T_cdm_mean_ratio: 0.996
+    T_cdm_std_ratio: 0.097
+    T_cdm_max_ratio: 3.695
+    T_cdm_min_ratio: 0.693
+    T_cdm_within_10%: 97.5%
+    T_b_mean_ratio: 0.993
+    T_b_std_ratio: 0.056
+    T_b_max_ratio: 1.985
+    T_b_min_ratio: 0.608
+    T_b_within_10%: 97.4%
+    T_tot_mean_ratio: 0.992
+    T_tot_std_ratio: 0.056
+    T_tot_max_ratio: 1.952
+    T_tot_min_ratio: 0.601
+    T_tot_within_10%: 97.4%
+    v_cdm_mean_ratio: 0.990
+    v_cdm_std_ratio: 0.037
+    v_cdm_max_ratio: 1.655
+    v_cdm_min_ratio: 0.720
+    v_cdm_within_10%: 97.8%
+    v_b_mean_ratio: 0.991
+    v_b_std_ratio: 0.035
+    v_b_max_ratio: 1.589
+    v_b_min_ratio: 0.735
+    v_b_within_10%: 98.3%
+
+Model: n2_m1e-4_halfmode_s1.19e-27
+  Mass: 1e-4 GeV, σ: 1.19e-27
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1e-4_halfmode_s1.19e-27.png
+  Statistics:
+    T_cdm_mean_ratio: 1.042
+    T_cdm_std_ratio: 0.986
+    T_cdm_max_ratio: 21.870
+    T_cdm_min_ratio: 0.010
+    T_cdm_within_10%: 88.1%
+    T_b_mean_ratio: 1.022
+    T_b_std_ratio: 0.776
+    T_b_max_ratio: 15.156
+    T_b_min_ratio: 0.051
+    T_b_within_10%: 87.9%
+    T_tot_mean_ratio: 1.021
+    T_tot_std_ratio: 0.772
+    T_tot_max_ratio: 15.083
+    T_tot_min_ratio: 0.050
+    T_tot_within_10%: 87.9%
+    v_cdm_mean_ratio: 1.053
+    v_cdm_std_ratio: 0.925
+    v_cdm_max_ratio: 18.329
+    v_cdm_min_ratio: 0.031
+    v_cdm_within_10%: 87.7%
+    v_b_mean_ratio: 1.054
+    v_b_std_ratio: 0.929
+    v_b_max_ratio: 18.243
+    v_b_min_ratio: 0.031
+    v_b_within_10%: 87.8%
+
+Model: n2_m1e-4_halfmode_s2.8e-27
+  Mass: 1e-4 GeV, σ: 2.8e-27
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1e-4_halfmode_s2.8e-27.png
+  Statistics:
+    T_cdm_mean_ratio: 0.946
+    T_cdm_std_ratio: 0.246
+    T_cdm_max_ratio: 4.181
+    T_cdm_min_ratio: 0.010
+    T_cdm_within_10%: 85.9%
+    T_b_mean_ratio: 0.958
+    T_b_std_ratio: 0.343
+    T_b_max_ratio: 6.385
+    T_b_min_ratio: 0.022
+    T_b_within_10%: 86.1%
+    T_tot_mean_ratio: 0.956
+    T_tot_std_ratio: 0.338
+    T_tot_max_ratio: 6.156
+    T_tot_min_ratio: 0.020
+    T_tot_within_10%: 86.2%
+    v_cdm_mean_ratio: 1.032
+    v_cdm_std_ratio: 0.753
+    v_cdm_max_ratio: 13.761
+    v_cdm_min_ratio: 0.044
+    v_cdm_within_10%: 85.8%
+    v_b_mean_ratio: 1.028
+    v_b_std_ratio: 0.744
+    v_b_max_ratio: 13.724
+    v_b_min_ratio: 0.044
+    v_b_within_10%: 85.9%
+
+Model: n2_m0.01_halfmode_s1.3e-25
+  Mass: 0.01 GeV, σ: 1.3e-25
+  Status: ✓ Success
+  Plot: species_comparison_n2_m0.01_halfmode_s1.3e-25.png
+  Statistics:
+    T_cdm_mean_ratio: 1.009
+    T_cdm_std_ratio: 0.530
+    T_cdm_max_ratio: 17.455
+    T_cdm_min_ratio: 0.203
+    T_cdm_within_10%: 95.5%
+    T_b_mean_ratio: 0.996
+    T_b_std_ratio: 0.152
+    T_b_max_ratio: 4.745
+    T_b_min_ratio: 0.352
+    T_b_within_10%: 95.5%
+    T_tot_mean_ratio: 0.995
+    T_tot_std_ratio: 0.151
+    T_tot_max_ratio: 4.725
+    T_tot_min_ratio: 0.350
+    T_tot_within_10%: 95.5%
+    v_cdm_mean_ratio: 0.995
+    v_cdm_std_ratio: 0.149
+    v_cdm_max_ratio: 4.663
+    v_cdm_min_ratio: 0.357
+    v_cdm_within_10%: 95.5%
+    v_b_mean_ratio: 0.995
+    v_b_std_ratio: 0.154
+    v_b_max_ratio: 4.841
+    v_b_min_ratio: 0.357
+    v_b_within_10%: 95.5%
+
+Model: n2_m0.01_halfmode_s1.36e-24
+  Mass: 0.01 GeV, σ: 1.36e-24
+  Status: ✓ Success
+  Plot: species_comparison_n2_m0.01_halfmode_s1.36e-24.png
+  Statistics:
+    T_cdm_mean_ratio: 1.039
+    T_cdm_std_ratio: 2.525
+    T_cdm_max_ratio: 79.856
+    T_cdm_min_ratio: 0.019
+    T_cdm_within_10%: 85.5%
+    T_b_mean_ratio: 0.955
+    T_b_std_ratio: 0.333
+    T_b_max_ratio: 6.037
+    T_b_min_ratio: 0.031
+    T_b_within_10%: 84.8%
+    T_tot_mean_ratio: 0.954
+    T_tot_std_ratio: 0.333
+    T_tot_max_ratio: 6.030
+    T_tot_min_ratio: 0.031
+    T_tot_within_10%: 84.8%
+    v_cdm_mean_ratio: 0.957
+    v_cdm_std_ratio: 0.356
+    v_cdm_max_ratio: 6.274
+    v_cdm_min_ratio: 0.031
+    v_cdm_within_10%: 84.7%
+    v_b_mean_ratio: 0.957
+    v_b_std_ratio: 0.359
+    v_b_max_ratio: 6.314
+    v_b_min_ratio: 0.031
+    v_b_within_10%: 84.7%
+
+Model: n2_m1_halfmode_s1.6e-23
+  Mass: 1 GeV, σ: 1.6e-23
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1_halfmode_s1.6e-23.png
+  Statistics:
+    T_cdm_mean_ratio: 0.994
+    T_cdm_std_ratio: 0.047
+    T_cdm_max_ratio: 2.345
+    T_cdm_min_ratio: 0.864
+    T_cdm_within_10%: 99.3%
+    T_b_mean_ratio: 0.992
+    T_b_std_ratio: 0.019
+    T_b_max_ratio: 1.232
+    T_b_min_ratio: 0.767
+    T_b_within_10%: 99.5%
+    T_tot_mean_ratio: 0.991
+    T_tot_std_ratio: 0.019
+    T_tot_max_ratio: 1.231
+    T_tot_min_ratio: 0.769
+    T_tot_within_10%: 99.4%
+    v_cdm_mean_ratio: 0.991
+    v_cdm_std_ratio: 0.021
+    v_cdm_max_ratio: 1.299
+    v_cdm_min_ratio: 0.673
+    v_cdm_within_10%: 99.3%
+    v_b_mean_ratio: 0.991
+    v_b_std_ratio: 0.019
+    v_b_max_ratio: 1.257
+    v_b_min_ratio: 0.678
+    v_b_within_10%: 99.6%
+
+Model: n2_m1_halfmode_s8e-22
+  Mass: 1 GeV, σ: 8e-22
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1_halfmode_s8e-22.png
+  Statistics:
+    T_cdm_mean_ratio: 0.867
+    T_cdm_std_ratio: 0.275
+    T_cdm_max_ratio: 1.413
+    T_cdm_min_ratio: 0.016
+    T_cdm_within_10%: 79.3%
+    T_b_mean_ratio: 0.866
+    T_b_std_ratio: 0.274
+    T_b_max_ratio: 1.002
+    T_b_min_ratio: 0.000
+    T_b_within_10%: 79.2%
+    T_tot_mean_ratio: 0.866
+    T_tot_std_ratio: 0.274
+    T_tot_max_ratio: 1.000
+    T_tot_min_ratio: 0.000
+    T_tot_within_10%: 79.1%
+    v_cdm_mean_ratio: 0.871
+    v_cdm_std_ratio: 0.262
+    v_cdm_max_ratio: 1.047
+    v_cdm_min_ratio: 0.009
+    v_cdm_within_10%: 79.3%
+    v_b_mean_ratio: 0.870
+    v_b_std_ratio: 0.262
+    v_b_max_ratio: 1.000
+    v_b_min_ratio: 0.009
+    v_b_within_10%: 79.3%
+
+Model: n2_m1_halfmode_s1.38e-22
+  Mass: 1 GeV, σ: 1.38e-22
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1_halfmode_s1.38e-22.png
+  Statistics:
+    T_cdm_mean_ratio: 0.942
+    T_cdm_std_ratio: 0.329
+    T_cdm_max_ratio: 7.780
+    T_cdm_min_ratio: 0.018
+    T_cdm_within_10%: 84.1%
+    T_b_mean_ratio: 0.961
+    T_b_std_ratio: 0.511
+    T_b_max_ratio: 10.383
+    T_b_min_ratio: 0.009
+    T_b_within_10%: 83.8%
+    T_tot_mean_ratio: 0.960
+    T_tot_std_ratio: 0.511
+    T_tot_max_ratio: 10.389
+    T_tot_min_ratio: 0.009
+    T_tot_within_10%: 83.8%
+    v_cdm_mean_ratio: 0.958
+    v_cdm_std_ratio: 0.484
+    v_cdm_max_ratio: 9.164
+    v_cdm_min_ratio: 0.032
+    v_cdm_within_10%: 83.8%
+    v_b_mean_ratio: 0.959
+    v_b_std_ratio: 0.491
+    v_b_max_ratio: 9.466
+    v_b_min_ratio: 0.031
+    v_b_within_10%: 83.8%
+
+------------------------------------------------------------
+GROUP: N=2_ENVELOPE
+------------------------------------------------------------
+
+Model: n2_m1e-4_envelope_s2.8e-27
+  Mass: 1e-4 GeV, σ: 2.8e-27
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1e-4_envelope_s2.8e-27.png
+  Statistics:
+    T_cdm_mean_ratio: 0.994
+    T_cdm_std_ratio: 0.079
+    T_cdm_max_ratio: 1.956
+    T_cdm_min_ratio: 0.255
+    T_cdm_within_10%: 95.4%
+    T_b_mean_ratio: 0.997
+    T_b_std_ratio: 0.132
+    T_b_max_ratio: 4.278
+    T_b_min_ratio: 0.248
+    T_b_within_10%: 95.0%
+    T_tot_mean_ratio: 0.996
+    T_tot_std_ratio: 0.126
+    T_tot_max_ratio: 4.075
+    T_tot_min_ratio: 0.226
+    T_tot_within_10%: 94.9%
+    v_cdm_mean_ratio: 1.008
+    v_cdm_std_ratio: 0.349
+    v_cdm_max_ratio: 10.766
+    v_cdm_min_ratio: 0.053
+    v_cdm_within_10%: 94.2%
+    v_b_mean_ratio: 1.003
+    v_b_std_ratio: 0.278
+    v_b_max_ratio: 8.603
+    v_b_min_ratio: 0.109
+    v_b_within_10%: 94.6%
+
+Model: n2_m0.01_envelope_s1.36e-24
+  Mass: 0.01 GeV, σ: 1.36e-24
+  Status: ✓ Success
+  Plot: species_comparison_n2_m0.01_envelope_s1.36e-24.png
+  Statistics:
+    T_cdm_mean_ratio: 1.532
+    T_cdm_std_ratio: 2.929
+    T_cdm_max_ratio: 45.331
+    T_cdm_min_ratio: 0.037
+    T_cdm_within_10%: 80.9%
+    T_b_mean_ratio: 1.773
+    T_b_std_ratio: 4.459
+    T_b_max_ratio: 78.213
+    T_b_min_ratio: 0.047
+    T_b_within_10%: 80.6%
+    T_tot_mean_ratio: 1.772
+    T_tot_std_ratio: 4.452
+    T_tot_max_ratio: 77.840
+    T_tot_min_ratio: 0.047
+    T_tot_within_10%: 80.6%
+    v_cdm_mean_ratio: 1.603
+    v_cdm_std_ratio: 4.160
+    v_cdm_max_ratio: 94.580
+    v_cdm_min_ratio: 0.048
+    v_cdm_within_10%: 80.8%
+    v_b_mean_ratio: 1.604
+    v_b_std_ratio: 4.034
+    v_b_max_ratio: 85.135
+    v_b_min_ratio: 0.048
+    v_b_within_10%: 80.8%
+
+Model: n2_m0.01_envelope_s1.7e-24
+  Mass: 0.01 GeV, σ: 1.36e-24
+  Status: ✓ Success
+  Plot: species_comparison_n2_m0.01_envelope_s1.7e-24.png
+  Statistics:
+    T_cdm_mean_ratio: 1.532
+    T_cdm_std_ratio: 2.929
+    T_cdm_max_ratio: 45.331
+    T_cdm_min_ratio: 0.037
+    T_cdm_within_10%: 80.9%
+    T_b_mean_ratio: 1.773
+    T_b_std_ratio: 4.459
+    T_b_max_ratio: 78.213
+    T_b_min_ratio: 0.047
+    T_b_within_10%: 80.6%
+    T_tot_mean_ratio: 1.772
+    T_tot_std_ratio: 4.452
+    T_tot_max_ratio: 77.840
+    T_tot_min_ratio: 0.047
+    T_tot_within_10%: 80.6%
+    v_cdm_mean_ratio: 1.603
+    v_cdm_std_ratio: 4.160
+    v_cdm_max_ratio: 94.580
+    v_cdm_min_ratio: 0.048
+    v_cdm_within_10%: 80.8%
+    v_b_mean_ratio: 1.604
+    v_b_std_ratio: 4.034
+    v_b_max_ratio: 85.135
+    v_b_min_ratio: 0.048
+    v_b_within_10%: 80.8%
+
+Model: n2_m1_envelope_s1.38e-22
+  Mass: 1 GeV, σ: 1.38e-22
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1_envelope_s1.38e-22.png
+  Statistics:
+    T_cdm_mean_ratio: 1.589
+    T_cdm_std_ratio: 3.649
+    T_cdm_max_ratio: 66.436
+    T_cdm_min_ratio: 0.050
+    T_cdm_within_10%: 80.9%
+    T_b_mean_ratio: 1.750
+    T_b_std_ratio: 3.950
+    T_b_max_ratio: 61.589
+    T_b_min_ratio: 0.064
+    T_b_within_10%: 80.7%
+    T_tot_mean_ratio: 1.749
+    T_tot_std_ratio: 3.948
+    T_tot_max_ratio: 61.510
+    T_tot_min_ratio: 0.064
+    T_tot_within_10%: 80.7%
+    v_cdm_mean_ratio: 1.805
+    v_cdm_std_ratio: 4.817
+    v_cdm_max_ratio: 90.364
+    v_cdm_min_ratio: 0.068
+    v_cdm_within_10%: 80.6%
+    v_b_mean_ratio: 1.767
+    v_b_std_ratio: 4.269
+    v_b_max_ratio: 74.519
+    v_b_min_ratio: 0.068
+    v_b_within_10%: 80.6%
+
+Model: n2_m1_envelope_s8e-22
+  Mass: 1 GeV, σ: 8e-22
+  Status: ✓ Success
+  Plot: species_comparison_n2_m1_envelope_s8e-22.png
+  Statistics:
+    T_cdm_mean_ratio: 0.996
+    T_cdm_std_ratio: 0.126
+    T_cdm_max_ratio: 3.630
+    T_cdm_min_ratio: 0.424
+    T_cdm_within_10%: 93.9%
+    T_b_mean_ratio: 0.997
+    T_b_std_ratio: 0.128
+    T_b_max_ratio: 3.047
+    T_b_min_ratio: 0.028
+    T_b_within_10%: 93.0%
+    T_tot_mean_ratio: 0.996
+    T_tot_std_ratio: 0.128
+    T_tot_max_ratio: 3.052
+    T_tot_min_ratio: 0.025
+    T_tot_within_10%: 92.8%
+    v_cdm_mean_ratio: 1.527
+    v_cdm_std_ratio: 9.593
+    v_cdm_max_ratio: 294.511
+    v_cdm_min_ratio: 0.313
+    v_cdm_within_10%: 91.4%
+    v_b_mean_ratio: 1.397
+    v_b_std_ratio: 6.361
+    v_b_max_ratio: 191.355
+    v_b_min_ratio: 0.318
+    v_b_within_10%: 91.5%
+
+------------------------------------------------------------
+GROUP: N=4_HALFMODE
+------------------------------------------------------------
+
+Model: n4_m1e-4_halfmode_s2.2e-27
+  Mass: 1e-4 GeV, σ: 2.2e-27
+  Status: ✓ Success
+  Plot: species_comparison_n4_m1e-4_halfmode_s2.2e-27.png
+  Statistics:
+    T_cdm_mean_ratio: 0.996
+    T_cdm_std_ratio: 0.111
+    T_cdm_max_ratio: 3.797
+    T_cdm_min_ratio: 0.536
+    T_cdm_within_10%: 97.8%
+    T_b_mean_ratio: 0.997
+    T_b_std_ratio: 0.112
+    T_b_max_ratio: 3.899
+    T_b_min_ratio: 0.454
+    T_b_within_10%: 97.3%
+    T_tot_mean_ratio: 0.996
+    T_tot_std_ratio: 0.107
+    T_tot_max_ratio: 3.790
+    T_tot_min_ratio: 0.454
+    T_tot_within_10%: 97.4%
+    v_cdm_mean_ratio: 2.438
+    v_cdm_std_ratio: 8.216
+    v_cdm_max_ratio: 132.716
+    v_cdm_min_ratio: 0.216
+    v_cdm_within_10%: 91.3%
+    v_b_mean_ratio: 2.351
+    v_b_std_ratio: 7.903
+    v_b_max_ratio: 146.979
+    v_b_min_ratio: 0.228
+    v_b_within_10%: 91.3%
+
+Model: n4_m1e-4_halfmode_s3.4e-26
+  Mass: 1e-4 GeV, σ: 3.4e-26
+  Status: ✓ Success
+  Plot: species_comparison_n4_m1e-4_halfmode_s3.4e-26.png
+  Statistics:
+    T_cdm_mean_ratio: 1.124
+    T_cdm_std_ratio: 2.146
+    T_cdm_max_ratio: 51.591
+    T_cdm_min_ratio: 0.014
+    T_cdm_within_10%: 86.6%
+    T_b_mean_ratio: 0.998
+    T_b_std_ratio: 0.793
+    T_b_max_ratio: 17.639
+    T_b_min_ratio: 0.021
+    T_b_within_10%: 86.5%
+    T_tot_mean_ratio: 0.998
+    T_tot_std_ratio: 0.795
+    T_tot_max_ratio: 17.388
+    T_tot_min_ratio: 0.021
+    T_tot_within_10%: 86.5%
+    v_cdm_mean_ratio: 3.431
+    v_cdm_std_ratio: 14.057
+    v_cdm_max_ratio: 257.990
+    v_cdm_min_ratio: 0.093
+    v_cdm_within_10%: 86.5%
+    v_b_mean_ratio: 3.270
+    v_b_std_ratio: 13.694
+    v_b_max_ratio: 286.979
+    v_b_min_ratio: 0.095
+    v_b_within_10%: 86.6%
+
+Model: n4_m1e-4_halfmode_s9.91e-27
+  Mass: 1e-4 GeV, σ: 9.91e-27
+  Status: ✓ Success
+  Plot: species_comparison_n4_m1e-4_halfmode_s9.91e-27.png
+  Statistics:
+    T_cdm_mean_ratio: 1.172
+    T_cdm_std_ratio: 2.410
+    T_cdm_max_ratio: 59.017
+    T_cdm_min_ratio: 0.015
+    T_cdm_within_10%: 88.7%
+    T_b_mean_ratio: 1.038
+    T_b_std_ratio: 1.080
+    T_b_max_ratio: 29.213
+    T_b_min_ratio: 0.039
+    T_b_within_10%: 88.9%
+    T_tot_mean_ratio: 1.037
+    T_tot_std_ratio: 1.081
+    T_tot_max_ratio: 29.245
+    T_tot_min_ratio: 0.040
+    T_tot_within_10%: 88.9%
+    v_cdm_mean_ratio: 3.889
+    v_cdm_std_ratio: 14.365
+    v_cdm_max_ratio: 193.669
+    v_cdm_min_ratio: 0.121
+    v_cdm_within_10%: 88.6%
+    v_b_mean_ratio: 3.737
+    v_b_std_ratio: 13.976
+    v_b_max_ratio: 214.730
+    v_b_min_ratio: 0.125
+    v_b_within_10%: 88.6%
+
+Model: n4_m0.01_halfmode_s1.7e-19
+  Mass: 0.01 GeV, σ: 1.7e-19
+  Status: ✓ Success
+  Plot: species_comparison_n4_m0.01_halfmode_s1.7e-19.png
+  Statistics:
+    T_cdm_mean_ratio: 1.057
+    T_cdm_std_ratio: 0.570
+    T_cdm_max_ratio: 10.501
+    T_cdm_min_ratio: 0.174
+    T_cdm_within_10%: 90.5%
+    T_b_mean_ratio: 2.657
+    T_b_std_ratio: 34.210
+    T_b_max_ratio: 1066.802
+    T_b_min_ratio: 0.430
+    T_b_within_10%: 89.6%
+    T_tot_mean_ratio: 2.551
+    T_tot_std_ratio: 31.949
+    T_tot_max_ratio: 995.601
+    T_tot_min_ratio: 0.417
+    T_tot_within_10%: 89.4%
+    v_cdm_mean_ratio: 62.675
+    v_cdm_std_ratio: 713.588
+    v_cdm_max_ratio: 20156.960
+    v_cdm_min_ratio: 0.096
+    v_cdm_within_10%: 81.5%
+    v_b_mean_ratio: 52.785
+    v_b_std_ratio: 458.168
+    v_b_max_ratio: 9963.331
+    v_b_min_ratio: 0.097
+    v_b_within_10%: 81.5%
+
+Model: n4_m0.01_halfmode_s1.7e-22
+  Mass: 0.01 GeV, σ: 1.7e-22
+  Status: ✓ Success
+  Plot: species_comparison_n4_m0.01_halfmode_s1.7e-22.png
+  Statistics:
+    T_cdm_mean_ratio: 2.539
+    T_cdm_std_ratio: 9.609
+    T_cdm_max_ratio: 138.900
+    T_cdm_min_ratio: 0.094
+    T_cdm_within_10%: 78.9%
+    T_b_mean_ratio: 5.685
+    T_b_std_ratio: 50.191
+    T_b_max_ratio: 1464.081
+    T_b_min_ratio: 0.301
+    T_b_within_10%: 79.7%
+    T_tot_mean_ratio: 5.656
+    T_tot_std_ratio: 49.088
+    T_tot_max_ratio: 1425.724
+    T_tot_min_ratio: 0.301
+    T_tot_within_10%: 79.7%
+    v_cdm_mean_ratio: 47.378
+    v_cdm_std_ratio: 427.291
+    v_cdm_max_ratio: 8596.665
+    v_cdm_min_ratio: 0.123
+    v_cdm_within_10%: 79.3%
+    v_b_mean_ratio: 42.938
+    v_b_std_ratio: 376.323
+    v_b_max_ratio: 7517.899
+    v_b_min_ratio: 0.135
+    v_b_within_10%: 79.3%
+
+Model: n4_m0.01_halfmode_s9.83e-21
+  Mass: 0.01 GeV, σ: 9.83e-21
+  Status: ✓ Success
+  Plot: species_comparison_n4_m0.01_halfmode_s9.83e-21.png
+  Statistics:
+    T_cdm_mean_ratio: 1.764
+    T_cdm_std_ratio: 5.292
+    T_cdm_max_ratio: 119.724
+    T_cdm_min_ratio: 0.186
+    T_cdm_within_10%: 79.6%
+    T_b_mean_ratio: 2.582
+    T_b_std_ratio: 9.456
+    T_b_max_ratio: 152.927
+    T_b_min_ratio: 0.170
+    T_b_within_10%: 79.6%
+    T_tot_mean_ratio: 2.573
+    T_tot_std_ratio: 9.403
+    T_tot_max_ratio: 154.535
+    T_tot_min_ratio: 0.170
+    T_tot_within_10%: 79.6%
+    v_cdm_mean_ratio: 23.052
+    v_cdm_std_ratio: 185.026
+    v_cdm_max_ratio: 4390.074
+    v_cdm_min_ratio: 0.087
+    v_cdm_within_10%: 78.9%
+    v_b_mean_ratio: 20.566
+    v_b_std_ratio: 140.833
+    v_b_max_ratio: 2180.983
+    v_b_min_ratio: 0.086
+    v_b_within_10%: 78.9%
+
+------------------------------------------------------------
+GROUP: N=4_ENVELOPE
+------------------------------------------------------------
+
+Model: n4_m1e-4_envelope_s9.91e-27
+  Mass: 1e-4 GeV, σ: 9.91e-27
+  Status: ✓ Success
+  Plot: species_comparison_n4_m1e-4_envelope_s9.91e-27.png
+  Statistics:
+    T_cdm_mean_ratio: 1.354
+    T_cdm_std_ratio: 3.159
+    T_cdm_max_ratio: 61.792
+    T_cdm_min_ratio: 0.022
+    T_cdm_within_10%: 88.2%
+    T_b_mean_ratio: 1.223
+    T_b_std_ratio: 2.013
+    T_b_max_ratio: 44.074
+    T_b_min_ratio: 0.054
+    T_b_within_10%: 88.4%
+    T_tot_mean_ratio: 1.228
+    T_tot_std_ratio: 2.056
+    T_tot_max_ratio: 44.497
+    T_tot_min_ratio: 0.057
+    T_tot_within_10%: 88.3%
+    v_cdm_mean_ratio: 8.105
+    v_cdm_std_ratio: 66.030
+    v_cdm_max_ratio: 1329.782
+    v_cdm_min_ratio: 0.701
+    v_cdm_within_10%: 88.3%
+    v_b_mean_ratio: 7.824
+    v_b_std_ratio: 64.401
+    v_b_max_ratio: 1264.802
+    v_b_min_ratio: 0.734
+    v_b_within_10%: 88.3%
+
+Model: n4_m0.01_envelope_s9.83e-21
+  Mass: 0.01 GeV, σ: 9.83e-21
+  Status: ✓ Success
+  Plot: species_comparison_n4_m0.01_envelope_s9.83e-21.png
+  Statistics:
+    T_cdm_mean_ratio: 1.764
+    T_cdm_std_ratio: 5.292
+    T_cdm_max_ratio: 119.724
+    T_cdm_min_ratio: 0.186
+    T_cdm_within_10%: 79.6%
+    T_b_mean_ratio: 2.582
+    T_b_std_ratio: 9.456
+    T_b_max_ratio: 152.927
+    T_b_min_ratio: 0.170
+    T_b_within_10%: 79.6%
+    T_tot_mean_ratio: 2.573
+    T_tot_std_ratio: 9.403
+    T_tot_max_ratio: 154.535
+    T_tot_min_ratio: 0.170
+    T_tot_within_10%: 79.6%
+    v_cdm_mean_ratio: 23.052
+    v_cdm_std_ratio: 185.026
+    v_cdm_max_ratio: 4390.074
+    v_cdm_min_ratio: 0.087
+    v_cdm_within_10%: 78.9%
+    v_b_mean_ratio: 20.566
+    v_b_std_ratio: 140.833
+    v_b_max_ratio: 2180.983
+    v_b_min_ratio: 0.086
+    v_b_within_10%: 78.9%
+
+Model: n4_m1_envelope_s2.09e-17
+  Mass: 1 GeV, σ: 2.09e-17
+  Status: ✓ Success
+  Plot: species_comparison_n4_m1_envelope_s2.09e-17.png
+  Statistics:
+    T_cdm_mean_ratio: 1.662
+    T_cdm_std_ratio: 3.642
+    T_cdm_max_ratio: 54.435
+    T_cdm_min_ratio: 0.112
+    T_cdm_within_10%: 80.8%
+    T_b_mean_ratio: 2.307
+    T_b_std_ratio: 12.698
+    T_b_max_ratio: 358.583
+    T_b_min_ratio: 0.020
+    T_b_within_10%: 80.6%
+    T_tot_mean_ratio: 2.297
+    T_tot_std_ratio: 12.490
+    T_tot_max_ratio: 351.262
+    T_tot_min_ratio: 0.020
+    T_tot_within_10%: 80.6%
+    v_cdm_mean_ratio: 29.652
+    v_cdm_std_ratio: 203.883
+    v_cdm_max_ratio: 2836.857
+    v_cdm_min_ratio: 0.016
+    v_cdm_within_10%: 80.6%
+    v_b_mean_ratio: 27.527
+    v_b_std_ratio: 191.250
+    v_b_max_ratio: 2831.556
+    v_b_min_ratio: 0.016
+    v_b_within_10%: 80.6%
+
+Model: n4_m1_envelope_s2.8e-16
+  Mass: 1 GeV, σ: 2.8e-16
+  Status: ✓ Success
+  Plot: species_comparison_n4_m1_envelope_s2.8e-16.png
+  Statistics:
+    T_cdm_mean_ratio: 1.003
+    T_cdm_std_ratio: 0.247
+    T_cdm_max_ratio: 7.712
+    T_cdm_min_ratio: 0.257
+    T_cdm_within_10%: 93.2%
+    T_b_mean_ratio: 1.080
+    T_b_std_ratio: 0.880
+    T_b_max_ratio: 15.758
+    T_b_min_ratio: 0.077
+    T_b_within_10%: 92.5%
+    T_tot_mean_ratio: 1.076
+    T_tot_std_ratio: 0.850
+    T_tot_max_ratio: 15.432
+    T_tot_min_ratio: 0.015
+    T_tot_within_10%: 92.7%
+    v_cdm_mean_ratio: 19.947
+    v_cdm_std_ratio: 135.159
+    v_cdm_max_ratio: 2426.712
+    v_cdm_min_ratio: 0.131
+    v_cdm_within_10%: 84.6%
+    v_b_mean_ratio: 19.923
+    v_b_std_ratio: 144.192
+    v_b_max_ratio: 3061.473
+    v_b_min_ratio: 0.126
+    v_b_within_10%: 84.6%
+
+Model: n4_m1_envelope_s8.6e-19
+  Mass: 1 GeV, σ: 8.6e-19
+  Status: ✓ Success
+  Plot: species_comparison_n4_m1_envelope_s8.6e-19.png
+  Statistics:
+    T_cdm_mean_ratio: 2.938
+    T_cdm_std_ratio: 13.872
+    T_cdm_max_ratio: 209.179
+    T_cdm_min_ratio: 0.147
+    T_cdm_within_10%: 80.1%
+    T_b_mean_ratio: 3.530
+    T_b_std_ratio: 20.658
+    T_b_max_ratio: 426.768
+    T_b_min_ratio: 0.165
+    T_b_within_10%: 80.0%
+    T_tot_mean_ratio: 3.518
+    T_tot_std_ratio: 20.493
+    T_tot_max_ratio: 418.057
+    T_tot_min_ratio: 0.165
+    T_tot_within_10%: 80.0%
+    v_cdm_mean_ratio: 8.945
+    v_cdm_std_ratio: 95.542
+    v_cdm_max_ratio: 2693.413
+    v_cdm_min_ratio: 0.197
+    v_cdm_within_10%: 80.0%
+    v_b_mean_ratio: 7.116
+    v_b_std_ratio: 52.905
+    v_b_max_ratio: 1046.889
+    v_b_min_ratio: 0.197
+    v_b_within_10%: 80.0%

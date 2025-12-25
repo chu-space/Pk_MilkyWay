@@ -1,0 +1,37 @@
+Transfer Functions Summary - n=2
+============================================================
+
+WDM Constraints:
+----------------------------------------
+5.9 keV: k_half = 50.8 Mpc⁻¹
+6.5 keV: k_half = 51.7 Mpc⁻¹
+
+COZMIC REFERENCE MODELS:
+----------------------------------------
+ENVELOPE, m=0.0001 GeV:
+  σ = 2.80e-27 cm²
+  k_half = 30.9 Mpc⁻¹
+
+HALFMODE, m=0.0001 GeV:
+  σ = 4.20e-28 cm²
+  k_half = 58.0 Mpc⁻¹
+
+ENVELOPE, m=0.01 GeV:
+  σ = 71.00e-25 cm²
+  k_half = 11.7 Mpc⁻¹
+
+HALFMODE, m=0.01 GeV:
+  σ = 1.30e-25 cm²
+  k_half = 57.6 Mpc⁻¹
+
+ENVELOPE, m=1 GeV:
+  σ = 8.00e-22 cm²
+  k_half = 12.5 Mpc⁻¹
+
+HALFMODE, m=1 GeV:
+  σ = 160.00e-25 cm²
+  k_half = 58.1 Mpc⁻¹
+
+
+CLASS IDM MODELS:
+----------------------------------------

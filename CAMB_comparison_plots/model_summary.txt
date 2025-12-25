@@ -1,0 +1,33 @@
+================================================================================
+IDM MODEL COMPARISON SUMMARY
+================================================================================
+
+AVAILABLE MODELS (plotted):
+--------------------------------------------------------------------------------
+No.  Name                                Mass       Type         Sigma           k_hm       k_peak    
+--------------------------------------------------------------------------------
+1    DM-proton scattering (n=2)          1e-4       halfmode     4.2e-28         58.0       0.010     
+2    IDM n=2, m=1e-4 GeV (envelope)      1e-4       envelope     2.8e-27         30.8       0.100     
+3    IDM n=2, m=0.01 GeV (halfmode)      0.01       halfmode     1.3e-25         58.0       0.440     
+4    IDM n=2, m=0.01 GeV (envelope)      0.01       envelope     7.1e-24         21.8       0.440     
+5    IDM n=2, m=1 GeV (halfmode)         1          halfmode     1.6e-23         58.0       0.230     
+6    IDM n=2, m=1 GeV (envelope)         1          envelope     8e-22           12.6       0.210     
+7    DM-proton scattering (n=4)          1e-4       halfmode     2.2e-27         58.2       0.003     
+8    IDM n=4, m=1e-4 GeV (envelope)      1e-4       envelope     3.4e-26         34.7       0.010     
+9    IDM n=4, m=0.01 GeV (envelope)      0.01       envelope     1.7e-19         8.2        0.870     
+10   IDM n=4, m=1 GeV (halfmode)         1          halfmode     8.6e-19         58.2       0.560     
+11   IDM n=4, m=1 GeV (envelope)         1          envelope     2.8e-16         11.3       0.500     
+
+
+MISSING MODELS (not plotted):
+--------------------------------------------------------------------------------
+IDM n=4, m=0.01 GeV (halfmode): Missing ref: idm_1e-2GeV_halfmode_Tk.dat
+
+
+================================================================================
+FILE PATHS
+================================================================================
+
+Reference CAMB files: /home/arifchu/Pk_MilkyWay/camb_data_tk
+VG CAMB files: /home/arifchu/class_public-master-new-dmeff/VG_fixed_correct_middle_camb
+Output directory: individual_model_comparisons
