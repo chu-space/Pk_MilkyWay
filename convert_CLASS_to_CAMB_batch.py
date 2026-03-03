@@ -22,15 +22,6 @@ CAMB_HEADER = '{0:^15s} {1:^15s} {2:^15s} {3:^15s} {4:^15s} {5:^15s} {6:^15s} {7
     'k/h','CDM','baryon','photon','nu','mass_nu','total','no_nu','total_de','Weyl','v_CDM','v_b','v_b-v_c'
 )
 
-# CLASS Output Headers Reference:
-# newtonian gauge: 
-#    1:k (h/Mpc)  2:t_g  3:t_b  4:t_cdm  5:t_dmeff  6:t_ur  7:t_tot 
-# synchronous gauge: 
-#    1:k (h/Mpc)  2:-T_cdm/k2  3:-T_dmeff/k2  4:-T_b/k2  5:-T_g/k2  6:-T_ur/k2  7:-T_ncdm/k2  8:-T_tot/k2
-# background: 
-#    1:z  2:proper time [Gyr]  3:conf. time [Mpc]  4:H [1/Mpc] ... 25:gr.fac. f
-# (Note to user: It does not matter if we get the background from the Newtonian or Synchronous gauge)
-
 def process_directory(input_dir):
     if not os.path.exists(input_dir):
         print(f"Input directory not found: {input_dir}")
@@ -84,12 +75,10 @@ def process_directory(input_dir):
         
         k_h = data_class_new[:, 0]
         
-        
         # 0th: data_camb_sync[:,0] = 1:k(h/Mpc) #'k/h'
         out_data[:, 0] = data_camb_sync[:, 0]
         
         # 1st: np.abs(data_camb_sync[:,1]) = 2:|-T_cdm/k2| = T_cdm/k2 # 'CDM' 
-        # It was confirmed that this column was T_cdm from the reference, and the final result is that there is a negligible effect on the SHMF.
         out_data[:, 1] = np.abs(data_camb_sync[:, 1]) 
         
         # 2nd: np.abs(data_camb_sync[:,3]) = 4:|-T_b/k2| = T_b/k2 # 'baryon'
@@ -102,16 +91,18 @@ def process_directory(input_dir):
         
         # 7-9th: dummy variables 'no_nu','total_de','Weyl' (Left as 0.0)
         
-        # 10th: vc = (1+z)*data_class_new[i,3] (4:t_cdm)/((data_class_new[i,0]*h)**2*H) # 'v_CDM'
-        out_data[:, 10] = (1 + Z_VAL) * data_class_new[:, 3] / ((k_h * H_VAL)**2 * H)
+        # 10th: vc 
+        out_data[:, 10] = np.abs((1 + Z_VAL) * data_class_new[:, 3] / ((k_h * H_VAL)**2 * H))
         
-        # 11th: vb = (1+z)*data_class_new[i,2] (3:t_b)/((data_class_new[i,0]*h)**2*H) # 'v_b'
-        out_data[:, 11] = (1 + Z_VAL) * data_class_new[:, 2] / ((k_h * H_VAL)**2 * H)
+        # 11th: vb 
+        out_data[:, 11] = np.abs((1 + Z_VAL) * data_class_new[:, 2] / ((k_h * H_VAL)**2 * H))
         
         # 12th: dummy variable 'v_b-v_c' (Left as 0.0)
         
         output_file = os.path.join(out_dir, f"{base_name}_CAMB_format.dat")
-        np.savetxt(output_file, out_data, fmt='%15.8e', header=CAMB_HEADER, comments='')
+        
+        # Removed comments='' to allow default '#' prefix and matched fmt string
+        np.savetxt(output_file, out_data, fmt='%15.6e', header=CAMB_HEADER)
 
 def main():
     for input_dir in INPUT_DIRS:
