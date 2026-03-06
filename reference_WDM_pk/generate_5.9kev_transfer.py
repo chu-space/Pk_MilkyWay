@@ -7,7 +7,7 @@ cdm_pk = np.load('cdm_transfer.npy', allow_pickle=True)
 k = wdm_65[:, 0]
 cdm_vals = cdm_pk
 
-# The parameterisation for 5.9 keV WDMi (our new WDM bounds) according to COZMIC 1
+# The Vogel & Abazajian 23 parameterisation was adopted for 5.9 keV WDM (our new WDM bounds) according to COZMIC 1
 m_wdm = 5.9
 omega_mh2 = 0.11711
 h = 0.7
