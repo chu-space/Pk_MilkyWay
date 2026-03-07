@@ -9,13 +9,15 @@ With this directory, you can gain access information to transfer functions which
 
 Next, I compare with reference transfer functions from the results of COZMIC 1 inside COZMIC_IDM_Tk, access the reference CAMB data from camb_data_tk. Naming conventions for directories are as follows: Tk means CAMB formatted transfer functions, whereeas Pk represents the power spectrum. CLASS outputs are titled output and plots derived from these searches are capitalised and remain the proof that these ICs are fitting for a new suite of simulations to expand out knowledge of a broad range of particle dark matter models and other sectors of standard model particles.
 
-*0. Interpolating new cross-section*: In order to determine the new interpolated cross-section for our new research, we first base our search on COZMIC 1 results (depending on the version of the paper you look at, figure 11; a plot which shows cross-section versus WDM mass and allows us to base our findings on WDM observational constraints). 
+*0. Verifying the cosmological parameters with a benchmark*: Before proceding with this study - it is important to have some reference point of what we should expect if everything from our initial conditions were crafted correctly. We have inherited past transfer function (Tk) files which were used to generate MUSIC ICs for the GADGET N-body simulations. 
 
-*1. Pk*: Once again the first step of this search is the plotting of the power spectra, the relevant files are as follows:
+*1. Interpolating new cross-sections*: In order to determine the new interpolated cross-section for our new research, we first base our search on COZMIC 1 results (depending on the version of the paper you look at, figure 11; a plot which shows cross-section versus WDM mass and allows us to base our findings on WDM observational constraints). 
+
+*2. Pk*: Once again the first step of this search is the plotting of the power spectra, the relevant files are as follows:
 CLASS plotting script, VG_short_cdm_Pk.ini and VG_short_idm_Pk.ini are utilised as template files to plot the transfer function or the ratio of the Pks. The halfmode models are found by finding the appropriate cross-section for a unique mass and velocity dependence where *T**2 = 0.25* or *T = 0.5* where *T* is the ratio of the IDM matter power spectra *Pk* to the benchmark CDM model's spectra. 
 
-*2. Tk*: Next, the same CLASS parameters that were used in the fitting exercise above are utilised for the CAMB output:
+*3. Tk*: Next, the same CLASS parameters that were used in the fitting exercise above are utilised for the CAMB output:
 If CAMB outputs are desired, we would need both the synchronous and newtonian gauge. Hence, VG_correct_params_idm_newtonian.ini and VG_correct_params_idm_synchronous.ini are used as template files to have their parameters adjusted depending on the model we are interested in and are configured apprioriately to produce the necessary format for CAMB files. Transfer functions for each species is *Tks*. The dynamic_camb.py python file utilises the unique naming conventions of the gauge outputs, thus satisfying the required CAMB format used in multi-scale simulation initial conditions (MUSIC), also convert_CLASS_to_CAMB_batch.py allows for Tks to be converted to the CAMB formatting.
 
-*3. CAMB for MUSIC*: 
+*4. CAMB for MUSIC*: 
 Converting the CAMB formatted CLASS outputs into GADGET ICs and plotted the particle dispersion to see what type of distribution we have for my initial conditions. I compare them with the reference MUSIC ICs to see where the particle distribution would be relative to known distributions. For instance, the interpolated cross-sections particle distribution should lie somewhere between its halfmode and envelope bounds, where the halfmode would have a more narrow distribution compared to the envelope distribution.
